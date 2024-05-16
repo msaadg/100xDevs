@@ -1,0 +1,38 @@
+<html>
+    <script>
+        let timer;
+        function debouncePopulateDiv() {
+            clearTimeout(timer);
+            timer = setTimeout(populateDiv, 100);
+        }
+
+        async function populateDiv() {
+            // document.getElementById("finalSum").innerHTML = "Hello World";
+
+            let firstNumber = document.getElementById("firstNumber").value || 0;
+            let secondNumber = document.getElementById("secondNumber").value || 0;
+            // let sum = parseInt(firstNumber) + parseInt(secondNumber);
+            const response = await fetch("http:localhost:3000/sum?a=" + firstNumber + "&b=" + secondNumber);
+            const sum = await response.text();
+            document.getElementById("finalSum").innerHTML = sum + "<br></br>";
+
+            let principal = document.getElementById("principal").value || 0;
+            let rate = document.getElementById("rate").value || 0;
+            let time = document.getElementById("time").value || 0;
+            const response2 = await fetch("http:localhost:3000/interest?principal=" + principal + "&rate=" + rate + "&time=" + time);
+            const interest = await response2.text();
+            document.getElementById("finalSum").innerHTML += interest;
+        }
+    </script>
+    <body>
+        <input oninput="debouncePopulateDiv()" id="firstNumber" type="text" placeholder="First Number"></input><br></br>
+        <input oninput="debouncePopulateDiv()" id="secondNumber" type="text" placeholder="Second Number"></input><br></br><br></br><br></br>
+        <!-- <button onclick="populateDiv()">Calculate</button><br></br> -->
+
+        <input oninput="debouncePopulateDiv()" id="principal" type="text" placeholder="Principal"></input><br></br>
+        <input oninput="debouncePopulateDiv()" id="rate" type="text" placeholder="Rate"></input><br></br>
+        <input oninput="debouncePopulateDiv()" id="time" type="text" placeholder="Time"></input><br></br>
+
+        <div id = "finalSum"></div>
+    </body>
+</html>
