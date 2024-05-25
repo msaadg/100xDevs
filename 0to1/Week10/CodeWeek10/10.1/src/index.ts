@@ -7,7 +7,7 @@ const client = new Client({
     // password: "mysecretpassword",
     // port: 5432,
 
-    connectionString: "postgresql://newuser:12345@localhost:5432/postgres?schema=public",
+    connectionString: "postgresql://postgres:mysecretpassword@localhost:5432/postgres?schema=public",
 });
 
 async function createUsersTable() {

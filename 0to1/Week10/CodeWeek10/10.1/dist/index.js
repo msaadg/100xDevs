@@ -16,7 +16,7 @@ const client = new pg_1.Client({
     // database: "postgres",
     // password: "mysecretpassword",
     // port: 5432,
-    connectionString: "postgresql://newuser:12345@localhost:5432/postgres?schema=public",
+    connectionString: "postgresql://postgres:mysecretpassword@localhost:5432/postgres?schema=public",
 });
 function createUsersTable() {
     return __awaiter(this, void 0, void 0, function* () {
