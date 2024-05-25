@@ -55,3 +55,21 @@ const prisma = new PrismaClient();
 // }
 //   
 // getUser("admin1");
+
+
+/////////////////////////////////////////////// get user and todos using joins /////////////////////////////////////////////
+async function getTodosAndUserDetails(userId: number, ) {
+    const todos = await prisma.todo.findMany({
+        where: {
+            userId: userId,
+        },
+        select: {
+            user: true,
+            title: true,
+            description: true
+        }
+    });
+    console.log(todos);
+}
+
+getTodosAndUserDetails(1);
