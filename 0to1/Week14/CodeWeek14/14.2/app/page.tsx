@@ -1,11 +1,16 @@
-import Image from "next/image";
 import axios from "axios";
+import { PrismaClient } from "@prisma/client";
+import client from "@/db";
+
 
 async function getUserDetails() {
   // await new Promise((resolve) => setTimeout(resolve, 1000));
   try {
-    const response = await axios.get("http://localhost:3000/api/user")
-    return response.data;
+    const user = await client.user.findFirst({});
+	  return {
+      name: user?.username,
+      username: user?.username
+    }
   }  catch(e) {
     console.log(e);
   }
@@ -20,8 +25,6 @@ export default async function Home() {
                 <div>
                     Name: {userData?.username}
                 </div>
-                
-                {userData?.email}
             </div>
         </div>
     </div>
