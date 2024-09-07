@@ -28846,12 +28846,12 @@ __reExport(src_exports, __toESM(require_default2()));
 var app = (0, import_express.default)();
 var prisma = new src_exports.PrismaClient();
 app.get("/", async (req, res) => {
-  const name = await prisma.user.findFirst({
+  const user = await prisma.user.findFirst({
     where: {
       number: "03472295131"
     }
   });
-  res.json({ message: `Hello World from ${name}` });
+  res.json({ message: `Hello World from ${user?.name}` });
 });
 app.listen(3002, () => {
   console.log("webhook listening on port 3002");
